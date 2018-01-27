@@ -15,7 +15,8 @@
   	"jsonwebtoken":"*",
   	"body-parser":"*",
   	"passport":"*",
-  	"passport-jwt":"*"
+  	"passport-jwt":"*",
+    "debug":"*"
   },
   "author": "Goos van den Bekerom",
   "license": "ISC"
