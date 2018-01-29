@@ -16,7 +16,7 @@
   	"body-parser":"*",
   	"passport":"*",
   	"passport-jwt":"*",
-    "debug":"*"
+    "morgan":"*"
   },
   "author": "Goos van den Bekerom",
   "license": "ISC"
