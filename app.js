@@ -28,6 +28,11 @@ app.use(cors()); // To allow requests from other domains
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.json());
 
+// Passport Middleware
+app.use(passport.initialize());
+app.use(passport.session());
+require('./config/passport')(passport);
+
 // Log incomming requests
 app.use(morgan('tiny'));
 
