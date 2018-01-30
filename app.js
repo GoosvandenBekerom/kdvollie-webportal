@@ -39,6 +39,41 @@ app.get('/', (req, res) => {
     res.send('Invalid endpoint');
 });
 
+// catch 404 and forward to error handler
+app.use(function(req, res, next) {
+    var err = new Error('Not Found');
+    err.status = 404;
+    next(err);
+});
+
+// Error handler
+app.use(function(err, req, res, next) {
+    res.status(err.status || 500);
+    res.json({
+        title: 'Error',
+        message: err.message,
+        error: err
+    });
+    /* Change to this in production
+    res.status(err.status || 500);
+    if (err.status === 404) {
+        res.render('error', {
+            title: 'Pagina niet gevonden',
+            message: err.message,
+            error: {}
+        });
+    }
+    else {
+        res.render('error', {
+            title: 'Er is iets fout gegaan',
+            message: err.message,
+            error: {}
+        });
+    }*/
+});
+
 app.listen(port, () => {
     console.log('Server started on port: ' + port);
 });
+
+module.exports = app;
