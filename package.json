@@ -8,15 +8,16 @@
     "start": "node app"
   },
   "dependencies": {
-  	"express": "*",
-  	"mongoose": "*",
-  	"bcryptjs": "*",
-  	"cors": "*",
-  	"jsonwebtoken":"*",
-  	"body-parser":"*",
-  	"passport":"*",
-  	"passport-jwt":"*",
-    "morgan":"*"
+    "bcryptjs": "*",
+    "bluebird": "^3.5.1",
+    "body-parser": "*",
+    "cors": "*",
+    "express": "*",
+    "jsonwebtoken": "*",
+    "mongoose": "*",
+    "morgan": "*",
+    "passport": "*",
+    "passport-jwt": "*"
   },
   "author": "Goos van den Bekerom",
   "license": "ISC"
