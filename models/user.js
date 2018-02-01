@@ -1,6 +1,10 @@
+"use strict"
 const mongoose = require('mongoose');
-const bcrypt = require('bcryptjs');
+const bcryptjs = require('bcryptjs');
 const config = require('../config/database');
+const Promise = require('bluebird');
+
+const bcrypt = Promise.promisifyAll(bcryptjs);
 
 // User Schema
 const userSchema = mongoose.Schema({
@@ -23,29 +27,27 @@ const userSchema = mongoose.Schema({
 
 const User = module.exports = mongoose.model('User', userSchema);
 
-module.exports.getUserById = (id, callback) => {
-    User.findById(id, callback);
+module.exports.getUserById = (id) => {
+    return User.findById(id).exec();
 };
 
-module.exports.getUserByUsername = (username, callback) => {
+module.exports.getUserByUsername = (username) => {
     const query = {username: username};
-    User.findOne(query, callback);
+    return User.findOne(query).exec();
 };
 
-module.exports.addUser = (newUser, callback) => {
-    bcrypt.genSalt(10, (err, salt) => {
-        if (err) throw err;
-        bcrypt.hash(newUser.password, salt, (err, hash) => {
-            if (err) throw err;
-            newUser.password = hash;
-            newUser.save(callback);
-        });
-    });
+module.exports.addUser = async newUser => {
+    try {
+        const salt = await bcrypt.genSalt(10);
+        const hash = await bcrypt.hash(newUser.password, salt);
+        newUser.password = hash;
+        return newUser.save();
+    } catch (err) {
+        console.log(err);
+        throw err;
+    }
 };
 
-module.exports.comparePassword = (password, hash, callback) => {
-    bcrypt.compare(password, hash, (err, isMatch) => {
-        if (err) throw err;
-        callback(null, isMatch);
-    })
+module.exports.comparePassword = (password, hash) => {
+    return bcrypt.compare(password, hash);
 };

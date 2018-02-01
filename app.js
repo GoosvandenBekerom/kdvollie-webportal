@@ -1,3 +1,4 @@
+"use strict"
 const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
@@ -7,13 +8,11 @@ const mongoose = require('mongoose');
 const morgan = require('morgan');
 const config = require('./config/database');
 
-// Connect to Database
-mongoose.connect(config.database);
-// On Connected
+// Connect to Database and setup connection and error events
+mongoose.connect(config.database, { promiseLibrary: require('bluebird') });
 mongoose.connection.on('connected', () => {
     console.log('Connected to database ' + config.database);
 });
-// On Error
 mongoose.connection.on('error', (err) => {
     console.log('Database error: ' + err);
 });
@@ -24,8 +23,8 @@ const users = require('./routes/users');
 
 const port = 3000;
 
-app.use(cors()); // To allow requests from other domains
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(cors()); // Allow requests from other domains
+app.use(express.static(path.join(__dirname, 'public'))); // Set static file location
 app.use(bodyParser.json());
 
 // Passport Middleware
@@ -41,7 +40,7 @@ app.use('/users', users);
 
 // Index route
 app.get('/', (req, res) => {
-    res.send('Invalid endpoint');
+    res.send('Index page');
 });
 
 // catch 404 and forward to error handler
@@ -52,7 +51,7 @@ app.use(function(req, res, next) {
 });
 
 // Error handler
-app.use(function(err, req, res, next) {
+app.use((err, req, res, next) => {
     res.status(err.status || 500);
     res.json({
         title: 'Error',
