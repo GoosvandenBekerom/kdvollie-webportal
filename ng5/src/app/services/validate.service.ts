@@ -8,7 +8,7 @@ export class ValidateService {
   constructor() { }
 
   validateUser(user: User) : boolean {
-    return user.isComplete()
+    return user.isCompleteForRegister()
   }
 
   validateEmail(email: string) : boolean {
