@@ -20,8 +20,5 @@
     "passport-jwt": "^3.0.1"
   },
   "author": "Goos van den Bekerom",
-  "license": "ISC",
-  "devDependencies": {
-    "@angular/cli": "^1.6.7"
-  }
+  "license": "ISC"
 }
