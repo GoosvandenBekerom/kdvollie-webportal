@@ -12,7 +12,6 @@ router.post('/register', async (req, res) => {
     let newUser = new User({
         name: req.body.name,
         email: req.body.email,
-        username: req.body.username,
         password: req.body.password
     });
 
@@ -26,10 +25,10 @@ router.post('/register', async (req, res) => {
 
 // Authenticate
 router.post('/authenticate', async (req, res) => {
-    const username = req.body.username;
+    const email = req.body.email;
     const password = req.body.password;
 
-    const user = await User.getUserByUsername(username);
+    const user = await User.getUserByEmail(email);
 
     if (!user) {
         return res.json({success: false, msg: 'User not found'});
@@ -49,7 +48,6 @@ router.post('/authenticate', async (req, res) => {
         user: {
             id: user._id,
             name: user.name,
-            username: user.username,
             email: user.email
         }
     });

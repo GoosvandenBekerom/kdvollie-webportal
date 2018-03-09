@@ -36,7 +36,7 @@ require('./config/passport')(passport);
 app.use(morgan('tiny'));
 
 // routes
-app.use('/users', users);
+app.use('/user', users);
 
 // Index route
 app.get('/', (req, res) => {
