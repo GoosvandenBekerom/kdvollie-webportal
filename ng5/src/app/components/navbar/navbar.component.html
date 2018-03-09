@@ -21,10 +21,10 @@
 
         <!-- Logged in -->
         <li *ngIf="authService.loggedIn()" class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}">
-            <a class="nav-link" [routerLink]="['/profile']">Profiel</a>
+            <a class="nav-link" [routerLink]="['/dashboard']">Dashboard</a>
         </li>
         <li *ngIf="authService.loggedIn()" class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}">
-            <a class="nav-link" [routerLink]="['/dashboard']">Dashboard</a>
+            <a class="nav-link" [routerLink]="['/profile']">Profiel</a>
         </li>
         <li *ngIf="authService.loggedIn()" class="nav-item">
             <a class="nav-link" href="#" (click)="onLogoutClick()">Uitloggen</a>
