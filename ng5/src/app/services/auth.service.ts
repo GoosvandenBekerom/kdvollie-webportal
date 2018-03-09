@@ -40,7 +40,7 @@ export class AuthService {
 
   private loadToken() {
     if (this.authToken != null) return
-    this.authToken = localStorage.getItem('id_token')
+    this.authToken = localStorage.getItem('token')
   }
 
   storeUserData(token: any, user: any) {
