@@ -1,3 +1,3 @@
 # KDV OLLIE & co Webportal
 
-A webportal created for OLLIE & co
+This is a webportal I'm building for my mom's daycare using the MEAN application stack.
