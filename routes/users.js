@@ -28,7 +28,7 @@ router.post('/authenticate', async (req, res) => {
     const email = req.body.email;
     const password = req.body.password;
 
-    const user = await User.getUserByEmail(email);
+    const user = await User.getByEmail(email);
 
     if (!user) {
         return res.json({success: false, msg: 'Gebruiker niet gevonden.'});
