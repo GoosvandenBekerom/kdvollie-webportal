@@ -1,22 +1,58 @@
-<div class="jumbotron text-center">
-  <h1>MEAN Authentication App</h1>
-  <p class="lead">Welcome to our custom MEAN authentication application built from scratch</p>
-  <div>
-    <a class="btn btn-primary" [routerLink]="['/register']">Register</a> <a class="btn btn-default" [routerLink]="['/login']">Login</a>
+<div class="row my-3">
+  <div class="col-lg-8">
+    <img class="img-fluid rounded" src="assets/{{page.banner}}" alt="{{page.company.name}}">
+  </div>
+  <div class="col-lg-4">
+    <h1>{{page.company.name}}</h1>
+    <table class="table mt-3">
+      <tr><td><b>Adres:</b></td><td>{{page.company.address}}</td>
+      <tr><td><b>Postcode:</b></td><td>{{page.company.postal}}</td>
+      <tr><td><b>Telefoon:</b></td><td>{{page.company.phone}}</td>
+      <tr><td><b>E-mail:</b></td><td><a href="mailto:{{page.company.email}}">{{page.company.email}}</a></td>
+    </table>
+  </div>
+</div>
+
+<div class="card text-white bg-secondary my-4 text-center">
+  <div class="card-body">
+    <p class="text-white m-0">{{page.quote}}</p>
   </div>
 </div>
 
 <div class="row">
-  <div class="col-md-4">
-    <h3>Express Backend</h3>
-    <p>A rock solid Node.js/Express server using Mongoose to organize models and query the database</p>
+  <div class="col-md-4 mb-4">
+    <div class="card h-100">
+      <div class="card-body">
+        <h2 class="card-title">{{page.card1.title}}</h2>
+        <p class="card-text">{{page.card1.content}}</p>
+      </div>
+      <div class="card-footer">
+        <a href="{{page.card1.action}}" class="btn btn-primary">{{page.card1.actionText}}</a>
+      </div>
+    </div>
   </div>
-  <div class="col-md-4">
-    <h3>Angular-CLI</h3>
-    <p>Angular-CLI to generate components, services and more. Local dev server and easy compilation</p>
+
+  <div class="col-md-4 mb-4">
+    <div class="card h-100">
+      <div class="card-body">
+        <h2 class="card-title">{{page.card2.title}}</h2>
+        <p class="card-text">{{page.card2.content}}</p>
+      </div>
+      <div class="card-footer">
+        <a href="{{page.card2.action}}" class="btn btn-primary">{{page.card2.actionText}}</a>
+      </div>
+    </div>
   </div>
-  <div class="col-md-4">
-    <h3>JWT Tokens</h3>
-    <p>Full featured authentication using JSON web tokens. Login and store user data</p>
+
+  <div class="col-md-4 mb-4">
+    <div class="card h-100">
+      <div class="card-body">
+        <h2 class="card-title">{{page.card3.title}}</h2>
+        <p class="card-text">{{page.card3.content}}</p>
+      </div>
+      <div class="card-footer">
+        <a href="{{page.card1.action}}" class="btn btn-primary">{{page.card3.actionText}}</a>
+      </div>
+    </div>
   </div>
 </div>
