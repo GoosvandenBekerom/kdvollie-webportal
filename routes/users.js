@@ -17,9 +17,9 @@ router.post('/register', async (req, res) => {
 
     try {
         const user = await User.addUser(newUser);
-        res.json({success: true, msg: 'User registered!'});
+        res.json({success: true, msg: 'U bent succesvol geregistreerd!'});
     } catch (err) {
-        res.json({success: false, msg:'Failed to register user'});
+        res.json({success: false, msg:'Excuses, er is iets fout gegaan tijdens het registreren.'});
     }
 });
 
@@ -31,13 +31,13 @@ router.post('/authenticate', async (req, res) => {
     const user = await User.getUserByEmail(email);
 
     if (!user) {
-        return res.json({success: false, msg: 'User not found'});
+        return res.json({success: false, msg: 'Gebruiker niet gevonden.'});
     }
 
     const isMatch = await User.comparePassword(password, user.password);
 
     if (!isMatch) {
-        return res.json({success: false, msg: 'Incorrect Password'});
+        return res.json({success: false, msg: 'Incorrect wachtwoord.'});
     }
 
     const token = jwt.sign(user.toJSON(), config.secret, { expiresIn: 604800 });
@@ -45,11 +45,7 @@ router.post('/authenticate', async (req, res) => {
     res.json({
         success: true,
         token: 'JWT ' + token,
-        user: {
-            id: user._id,
-            name: user.name,
-            email: user.email
-        }
+        user: {id: user._id, name: user.name, email: user.email}
     });
 });
 

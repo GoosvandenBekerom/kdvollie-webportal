@@ -6,7 +6,6 @@ const Promise = require('bluebird');
 
 const bcrypt = Promise.promisifyAll(bcryptjs);
 
-// User Schema
 const userSchema = mongoose.Schema({
     name: {
         type: String
@@ -35,11 +34,10 @@ module.exports.getUserByEmail = (email) => {
 module.exports.addUser = async newUser => {
     try {
         const salt = await bcrypt.genSalt(10);
-        const hash = await bcrypt.hash(newUser.password, salt);
-        newUser.password = hash;
+        newUser.password = await bcrypt.hash(newUser.password, salt);
         return newUser.save();
     } catch (err) {
-        console.log(err);
+        console.error(err);
         throw err;
     }
 };
