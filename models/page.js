@@ -20,14 +20,14 @@ const pageSchema = mongoose.Schema({
 
 const Page = module.exports = mongoose.model('Page', pageSchema);
 
-module.exports.getById = id => {
-  return Page.findById(id).exec();
+module.exports.getById = async id => {
+  return await Page.findById(id).exec()
 };
 
-module.exports.getByTitle = title => {
-  return Page.findOne({title: title}).exec();
+module.exports.getByTitle = async title => {
+  return await Page.findOne({title: title}).exec()
 };
 
-module.exports.addPage = newPage => {
-  return newPage.save();
+module.exports.addPage = async newPage => {
+  return await newPage.save()
 };

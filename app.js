@@ -11,15 +11,16 @@ const config = require('./config/database');
 // Connect to Database and setup connection and error events
 mongoose.connect(config.database, { promiseLibrary: require('bluebird') });
 mongoose.connection.on('connected', () => {
-    console.log('Connected to database ' + config.database);
+  console.log('Connected to database ' + config.database);
 });
 mongoose.connection.on('error', (err) => {
-    console.log('Database error: ' + err);
+  console.log('Database error: ' + err);
 });
 
 const app = express();
 
 const users = require('./routes/users');
+const pages = require('./routes/pages');
 
 const port = 3000;
 
@@ -36,44 +37,45 @@ require('./config/passport')(passport);
 app.use(morgan('tiny'));
 
 // routes
-app.use('/user', users);
+app.use('/api/user', users);
+app.use('/api/page', pages);
 
 // Index route
 app.get('/', (req, res) => {
-    res.send('Index page');
+  res.send('Index page');
 });
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
-    var err = new Error('Not Found');
-    err.status = 404;
-    next(err);
+app.use((req, res, next) => {
+  var err = new Error('Not Found');
+  err.status = 404;
+  next(err);
 });
 
 // Error handler
 app.use((err, req, res, next) => {
-    res.status(err.status || 500);
-    res.json({
-        title: 'Error',
-        message: err.message,
-        error: err
+  res.status(err.status || 500);
+  res.json({
+    title: 'Error',
+    message: err.message,
+    error: err
+  });
+  /* Change to this in production
+  res.status(err.status || 500);
+  if (err.status === 404) {
+    res.render('error', {
+      title: 'Pagina niet gevonden',
+      message: err.message,
+      error: {}
     });
-    /* Change to this in production
-    res.status(err.status || 500);
-    if (err.status === 404) {
-        res.render('error', {
-            title: 'Pagina niet gevonden',
-            message: err.message,
-            error: {}
-        });
-    }
-    else {
-        res.render('error', {
-            title: 'Er is iets fout gegaan',
-            message: err.message,
-            error: {}
-        });
-    }*/
+  }
+  else {
+    res.render('error', {
+      title: 'Er is iets fout gegaan',
+      message: err.message,
+      error: {}
+    });
+  }*/
 });
 
 app.listen(port, () => {
