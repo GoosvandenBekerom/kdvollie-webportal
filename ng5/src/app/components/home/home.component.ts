@@ -19,8 +19,21 @@ export class HomeComponent implements OnInit {
         phone: "0478-579475",
         email: "kdvollie@gmail.com"
       },
-      banner: "building.jpg",
-      quote: "Ondanks dat wij bij Ollie & Co nederlands spreken, vindt onze naam zijn oorsprong in het Venrayse dialect. “wej brenge um bej ollie” (we brengen hem naar jullie)",
+      banners: [
+        {
+          image: "building.jpg",
+          alt: "Ons pand"
+        },
+        {
+          image: "ander.jpg",
+          alt: "Andere afbeelding"
+        },
+        {
+          image: "nogeen.jpg",
+          alt: "nog een afbeelding"
+        }
+      ],
+      quote: "Ondanks dat wij bij Ollie & Co nederlands spreken, vindt onze naam zijn oorsprong in het Venrayse dialect. “wej brenge um bej ollie”",
       card1: {
         title: "Kaart 1",
         content: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem magni quas ex numquam, maxime minus quam molestias corporis quod, ea minima accusamus.",
